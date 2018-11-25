@@ -1,0 +1,26 @@
+name: FixtureKit
+options:
+  deploymentTarget:
+    iOS: 10.0
+    macOS: '10.10'
+    tvOS: 10.0
+  indentWidth: 2
+  tabWidth: 2
+  usesTabs: true
+targets:
+  FixtureKit:
+    platform: [macOS, iOS, tvOS]
+    settings:
+      ENABLE_BITCODE: 'NO'
+    scheme:
+      testTargets: [FixtureKitTests_$platform]
+    sources: [Sources]
+    type: framework
+  FixtureKitTests:
+    dependencies: [{target: FixtureKitTests_$platform}]
+    platform: [macOS, iOS, tvOS]
+    sources:
+      - path: Tests
+        excludes:
+          - LinuxMain.swift
+    type: bundle.unit-test
