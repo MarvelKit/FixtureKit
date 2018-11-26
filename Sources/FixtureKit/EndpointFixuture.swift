@@ -17,7 +17,7 @@ public struct EndpointFixture: AsyncFixture {
 		self.session = session
 	}
 	
-	public func run() -> Async<Result<Data, Error>> {
+	public func create() -> Async<Result<Data, Error>> {
 		return .init { callback in
 			self.session.dataTask(with: self.request) { data, _, error in
 				guard let data = data, error == nil else {
